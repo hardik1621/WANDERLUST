@@ -11,6 +11,7 @@ const ejsMate= require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
 const listingRoute=require("./routes/listing.js");
 const reviewRoute= require("./routes/review.js");
+const Listing=require("./models/listing.js");
 const session=require("express-session");
 const MongoStore= require("connect-mongo");
 const flash= require("connect-flash");
@@ -97,7 +98,10 @@ app.use("/listings/:id/reviews", reviewRoute);
 app.use("/", userRoute);
 
 
-
+app.get("/", async(req,res)=>{
+    const allListing = await Listing.find({});
+    res.render("./listings/index.ejs", { allListing });
+})
 
 
 
