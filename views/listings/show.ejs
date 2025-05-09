@@ -109,7 +109,9 @@
           class="mb-2 mt-3"
           method="POST"
         >
+        <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
           <button type="submit" class="btn btn-sm btn-dark">Delete</button>
+          <% } %>
         </form>
       </div>
       <% }%>
